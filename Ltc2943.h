@@ -39,7 +39,12 @@ inline static void LTC2943_setChrgUpprThr(Ltc2943* const self, uint8_t upper);
 /* chrgLowThr getter */
 inline static uint8_t LTC2943_getChrgLowThr(Ltc2943* const self);
 /* chrgLowThr setter */
-inline static void LTC2943_setChrgLowThr(Ltc2943* const self, uint8_t lower);
+inline static void LTC2943_setChrgLowThr(Ltc2943* const self, uint8_t rSense);
+
+/* rSesnse getter */
+inline static uint8_t LTC2943_getRSense(Ltc2943* const self);
+/* rSense setter */
+inline static void LTC2943_setRSense(Ltc2943* const self, uint8_t rSense);
 
 /***********************/
 /*  Implemented Intf   */
