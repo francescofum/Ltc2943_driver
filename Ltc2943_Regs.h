@@ -1,13 +1,12 @@
 #ifndef LTC2943_REG_H
 #define LTC2943_REG_H
 
-#include <stdint.h>
-
 #define BIT(n)  (((uint8_t)1) << n)
 #define BIT_CLEAR(byte,to_clear) ((byte) &= BIT(to_clear))
 
 /* All registers are 1 byte */
 #define LTC2943_REG_SIZE (1)
+
 /************************/
 /* Status Register (A) */
 /************************/
@@ -49,7 +48,6 @@
 #define LTC2943_FULL_SCALE_POS_VOLTAGE (60)
 /* Shutdown */
 #define LTC2943_ALCC_SHUTDOWN    (BIT(0))
-
 
 typedef enum  {
 	LTC2943_REG_STS		                = 0x00,    

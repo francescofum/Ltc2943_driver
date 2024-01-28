@@ -2,6 +2,8 @@
 #define LTC2943_H
 
 #include "IChipCtrl.h"
+#include "Ltc2943_Regs.h"
+
 #include <stdbool.h>
 
 
@@ -57,9 +59,9 @@ Note to Astroscale: I have slightly modified the functions
 /* Initialise the device */
 bool LTC2943_Initialise(Ltc2943* const self);
 /* Read data from src to the chip @address to dest */
-bool LTC2943_Read(Ltc2943* const self, uint8_t address, uint8_t *dest, uint8_t dataSize);
+bool LTC2943_Read(Ltc2943* const self, Ltc2943_Regs address, uint8_t *dest, uint8_t dataSize);
 /* Write data from src to the chip @address */ 
-bool LTC2943_Write(Ltc2943* const self,uint8_t address, uint8_t *src, uint8_t dataSize);
+bool LTC2943_Write(Ltc2943* const self,Ltc2943_Regs address, uint8_t *src, uint8_t dataSize);
 /* Default initialiser */
 void LTC2943_initDft(Ltc2943* const self);
 

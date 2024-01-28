@@ -7,6 +7,12 @@
 /***********************/
 /*   Obj Operations    */
 /***********************/
+
+/******************************************
+ * @brief LTC2943_Initialise - Initialise the LTC2943
+ * @param[in] self: Ltc2943 - Reference on the object
+ * 
+ ******************************************/
 bool LTC2943_Initialise(Ltc2943* const self)
 {
     bool result = false;
@@ -17,7 +23,17 @@ bool LTC2943_Initialise(Ltc2943* const self)
     return result;
 }
 
-bool LTC2943_Read(Ltc2943* const self, uint8_t address, uint8_t *dest, uint8_t dataSize)
+/******************************************
+ * @brief LTC2943_Read - Read from LTC2943
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @param[in] address: Ltc2943_Regs - Address to read from
+ *            (Note for Astroscale: I changed it from uint8_t to Ltc2943_Regs for clarity.)
+ * @param[in] dest: uint8_t - Buffer to store read value to
+ * @param[in] dataSize: uint8_t - Number of bytes to read
+ * @return bool: true if successful, false if unsuccessful
+ * 
+ ******************************************/
+bool LTC2943_Read(Ltc2943* const self, Ltc2943_Regs address, uint8_t *dest, uint8_t dataSize)
 {
     bool result = false;
 
@@ -27,7 +43,17 @@ bool LTC2943_Read(Ltc2943* const self, uint8_t address, uint8_t *dest, uint8_t d
     return result;
 }
 
-bool LTC2943_Write(Ltc2943* const self,uint8_t address, uint8_t *src, uint8_t dataSize)
+/******************************************
+ * @brief LTC2943_Write - Write from LTC2943
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @param[in] address: Ltc2943_Regs - Address to write to 
+ *            (Note for Astroscale: I changed it from uint8_t to Ltc2943_Regs for clarity.)
+ * @param[in] dest: uint8_t - Buffer to store write data
+ * @param[in] dataSize: uint8_t - Number of bytes to write
+ * @return bool: true if successful, false if unsuccessful
+ * 
+ ******************************************/
+bool LTC2943_Write(Ltc2943* const self, Ltc2943_Regs address, uint8_t *src, uint8_t dataSize)
 {
     bool result = false;
     
@@ -41,6 +67,13 @@ bool LTC2943_Write(Ltc2943* const self,uint8_t address, uint8_t *src, uint8_t da
 /* Methods for implemented interfaces */
 /**************************************/
 
+/******************************************
+ * @brief LTC2943_getAdcMode - Get the adc mode
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @return ChipCtrl_Mode: The adc mode or E_MODE_ERROR
+ *   if something went wrong with the read.
+ * 
+ ******************************************/
 ChipCtrl_Mode LTC2943_getAdcMode(Ltc2943* const self)
 {
     ChipCtrl_Mode result = E_MODE_ERROR;
@@ -78,6 +111,14 @@ ChipCtrl_Mode LTC2943_getAdcMode(Ltc2943* const self)
     return result; 
 }
 
+/******************************************
+ * @brief LTC2943_setAdcMode - Set the adc mode
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @param[in] mode: ChipCtrl_Mode - The adc mode
+ * @return ChipCtrl_Status: Status of the operation, E_STATUS_OK or E_STATUS_ERROR 
+ *   if something went wrong with the read.
+ * 
+ ******************************************/
 ChipCtrl_Status LTC2943_setAdcMode(Ltc2943* const self, ChipCtrl_Mode mode)
 {
     ChipCtrl_Status result = E_STATUS_ERROR;
@@ -126,6 +167,13 @@ ChipCtrl_Status LTC2943_setAdcMode(Ltc2943* const self, ChipCtrl_Mode mode)
     return result;
 }
 
+/******************************************
+ * @brief LTC2943_getTempAlert - Get the temp alert
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @return ChipCtrl_Status: Status of the operation, E_STATUS_OK or E_STATUS_ERROR 
+ *   if something went wrong with the read.
+ * 
+ ******************************************/
 ChipCtrl_Alert LTC2943_getTempAlert(Ltc2943* const self)
 {
     ChipCtrl_Alert result = E_ALERT_ERROR;
@@ -143,6 +191,15 @@ ChipCtrl_Alert LTC2943_getTempAlert(Ltc2943* const self)
     return result;
 }
 
+/******************************************
+ * @brief LTC2943_setChrgThr - Set the upper and lower charge thresholds
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @param[in] uint16_t: upper - The upper threshold
+ * @param[in] uint16_t: lower - The lower threshold
+ * @return ChipCtrl_Status: Status of the operation, E_STATUS_OK or E_STATUS_ERROR 
+ *   if something went wrong with the read.
+ * 
+ ******************************************/
 ChipCtrl_Status LTC2943_setChrgThr(Ltc2943* const self, uint16_t upper, uint16_t lower)
 {
     ChipCtrl_Status result = E_STATUS_ERROR;
@@ -205,6 +262,12 @@ ChipCtrl_Status LTC2943_setChrgThr(Ltc2943* const self, uint16_t upper, uint16_t
     return result;
 }
 
+/******************************************
+ * @brief LTC2943_getChrgAlert - Get the charge alert 
+ * @param[in] self: Ltc2943 - Reference on the object
+ * @return ChipCtrl_Alert: Alert status or E_ALERT_ERROR is operation failed. 
+ * 
+ ******************************************/
 ChipCtrl_Alert LTC2943_getChrgAlert(Ltc2943* const self)
 {
     ChipCtrl_Alert result = E_ALERT_ERROR;
@@ -230,7 +293,7 @@ ChipCtrl_Alert LTC2943_getChrgAlert(Ltc2943* const self)
     return result;
 }
 
-/* Default initialiser */
+/* Default initialiser for the LTC2943 object*/
 void LTC2943_initDft(Ltc2943* const self)
 {
     self->chrgLowThr = 0;
